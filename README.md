@@ -1,5 +1,7 @@
 # Face & hair reconstruction from a single image server
 
+> **Note:** MICA and HairNet are still in development and not yet integrated.
+
 ## Project structure
 ```mermaid
 graph LR
@@ -16,48 +18,52 @@ graph LR
     HM --includes--> DA[Duc-Lo's neural network] -.uses training data from.-> HairNet
 ```
 
-## How to run
-### Prerequisites
-- Linux-based OS (or Docker or Docker-in-WSL2)
-- CUDA supported GPU
-- **Separate conda environments for each server**. This is important because of conflicting dependencies in the different servers which makes it impossible to run them in the same environment.
+## Installation
 
-### Install dependencies
-For DECA and MICA, follow the instructions in their respective repositories. Then install flask in the respective environments.
-
-For the gateway server, install fastapi and uvicorn.
-
-### Run servers
-**Gateway server**
-
-The gateway server is used to serve the frontend and calls the backend. 
-It uses FastAPI and can be run with uvicorn.
+### 1. Clone the repository
 ```bash
-python -m uvicorn server:webapp --reload --host 0.0.0.0 --port 8000
+git clone <repo-url>
+cd vkist-3dface
 ```
 
-**DECA server**
-
-The DECA server is used to serve input to a DECA based-model.
-It uses Flask and can be run with flask. Server is run on port 11200.
+### 2. Create and activate a virtual environment
 ```bash
-conda run -n <YOUR_DECA_ENV> --no-capture-output \
- python -m flask run -p 11200
+conda create -n vkist-3dface python=3.10
+conda activate vkist-3dface
 ```
 
-**MICA server**
-
-The MICA server is used to serve input to a MICA based-model.
-It uses Flask and can be run with flask. Server is run on port 11100.
+### 3. Install dependencies
 ```bash
-conda run -n <YOUR_MICA_ENV> --no-capture-output \
-python -m flask run -p 11100
+pip install -r requirements.txt
+pip install chumpy --no-build-isolation
 ```
 
-**HairNet server**
+### 4. Download FLAME model data
 
-Work in progress
+Download the FLAME model content from: *(link to be provided)*
 
-### Use the UI
+Then unzip it into `services/DECA/data/`:
+```bash
+unzip <downloaded-file>.zip -d services/DECA/data/
+```
 
-Go to the site: http://localhost:8000/upload-ui
+## Running the services
+
+Activate the environment in each terminal before running:
+```bash
+conda activate vkist-3dface
+```
+
+### DECA service (port 11200)
+```bash
+python ./services/DECA/demos/demo_server.py
+```
+
+### Gateway server (port 8000)
+```bash
+python server.py
+```
+
+## Use the UI
+
+Go to: http://localhost:8000/upload-ui

@@ -1,0 +1,26 @@
+# PyTorch 1.13.1 with CUDA 11.7
+# Install: pip install -r requirements.txt
+--extra-index-url https://download.pytorch.org/whl/cu117
+torch==1.13.1+cu117
+torchvision==0.14.1+cu117
+
+# Gateway server
+fastapi
+python-multipart
+requests
+uvicorn
+
+# DECA / face reconstruction
+numpy==1.23.0
+scipy>=1.9.0
+chumpy
+scikit-image>=0.19.0
+opencv-python>=4.6.0
+PyYAML>=6.0
+face-alignment
+yacs>=0.1.8
+kornia>=0.6.0
+ninja
+fvcore
+trimesh
+setuptools<68

@@ -4,6 +4,7 @@ from typing import Dict, Any, List
 
 import numpy as np
 import requests
+import uvicorn
 from PIL import Image, ImageOps
 from fastapi import FastAPI, UploadFile, Response, Request, Query
 from fastapi.middleware.cors import CORSMiddleware
@@ -66,3 +67,6 @@ async def update_parameters(params: Request):
 webapp.mount("/", StaticFiles(directory="static/ui-dist", html=True), name="static_2")
 
 # webapp.mount("/upload-ui", StaticFiles(directory="static", html=True), name="static_old")
+
+if __name__ == "__main__":
+    uvicorn.run("server:webapp", host="0.0.0.0", port=8000, reload=True)
