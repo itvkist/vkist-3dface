@@ -22,7 +22,7 @@ graph LR
 
 ### 1. Clone the repository
 ```bash
-git clone <repo-url>
+git clone https://github.com/itvkist/vkist-3dface.git
 cd vkist-3dface
 ```
 
@@ -40,11 +40,12 @@ pip install chumpy --no-build-isolation
 
 ### 4. Download FLAME model data
 
-Download the FLAME model content from: *(link to be provided)*
+Download the FLAME model content from:
+https://drive.google.com/file/d/1CDaHntz1Z-nFW5G7YfwKIKB6rcWgXz9R/view?usp=sharing
 
 Then unzip it into `services/DECA/data/`:
 ```bash
-unzip <downloaded-file>.zip -d services/DECA/data/
+unzip deca_vkist-3dface.zip -d services/DECA/data/
 ```
 
 ## Running the services
